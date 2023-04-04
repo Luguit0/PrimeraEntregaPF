@@ -31,7 +31,7 @@ class CartManager{
         if(searchCart){
             return searchCart;
         }else{
-            return {err: 'A cart with that ID does not exist.'};
+            return {err: 'No existe un carrito con ese ID.'};
         }
     }
 
@@ -41,7 +41,7 @@ class CartManager{
 
         let indexCart = cartList.findIndex(cart => cart.id == cid);
         if(indexCart == -1){
-            return {err: 'A cart with that ID does not exist.'};
+            return {err: 'No existe un carrito con ese ID.'};
         }
 
         // Ver si el producto ya se encuentra en el carrito
@@ -52,14 +52,14 @@ class CartManager{
             cartList[indexCart].products.push(toAdd)
             fs.writeFileSync(this.path,JSON.stringify(cartList, null, 2))
 
-            return {message: 'added to cart', cart: cartList[indexCart].products};
+            return {message: 'Agregado al carrito.', cart: cartList[indexCart].products};
         
         }else{
             cartList[indexCart].products[productIndex].quantity += 1;
 
             fs.writeFileSync(this.path,JSON.stringify(cartList, null, 2))
 
-            return {message: 'added to cart', cart: cartList[indexCart].products}
+            return {message: 'Agregado al carrito.', cart: cartList[indexCart].products}
         }
     }
     
@@ -73,7 +73,7 @@ class CartManager{
             });
 
         }catch{
-            console.log('The file was empty or did not exist.')
+            console.log('Archivo vacio o no existe.')
         }
         return data;
     }
